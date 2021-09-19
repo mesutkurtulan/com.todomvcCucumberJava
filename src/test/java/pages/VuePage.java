@@ -17,9 +17,6 @@ public class VuePage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(className = "new-todo")
-    public WebElement textBox;
-
     @FindBy(className = "toggle")
     public WebElement firstItemCheckBox;
 
@@ -34,9 +31,12 @@ public class VuePage {
     })
     public List<WebElement> todoList;
 
+    public void goToEmptyToDoList(){
+        Driver.getDriver().get(ConfigReader.getProperty("todomvcUrl"));
+    }
 
     public String firstItemONTheTODOlist(){
-        String firstItemONTheTODOlist = Driver.getDriver().findElement(By.cssSelector(".todo-list > li:nth-child(1) > div > label")).getText(); // .view >label
+        String firstItemONTheTODOlist = Driver.getDriver().findElement(By.cssSelector(".todo-list > li:nth-child(1) > div > label")).getText();
         return firstItemONTheTODOlist;
     }
 
@@ -46,11 +46,6 @@ public class VuePage {
     }
 
     public void addItemToTheTODOlist(String text){
-        Driver.getDriver().get(ConfigReader.getProperty("todomvcUrl"));
-        Driver.getDriver().findElement(By.cssSelector(".new-todo")).sendKeys(text+ Keys.ENTER);
-    }
-
-    public void addSecondItemToTheTODOlist(String text){
         Driver.getDriver().findElement(By.cssSelector(".new-todo")).sendKeys(text+ Keys.ENTER);
     }
 
