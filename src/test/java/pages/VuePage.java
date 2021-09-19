@@ -17,20 +17,20 @@ public class VuePage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(css = ".new-todo")
+    @FindBy(className = "new-todo")
     public WebElement textBox;
 
-    @FindBy(css = ".toggle")
+    @FindBy(className = "toggle")
     public WebElement firstItemCheckBox;
 
     @FindBy(css = ".view >label")
     public WebElement firstItem;
 
-    @FindBy(css = ".destroy")
+    @FindBy(className = "destroy")
     public WebElement firstItemDeleteIcon;
 
     @FindBys({
-            @FindBy(css = ".todo")
+            @FindBy(className = "todo")
     })
     public List<WebElement> todoList;
 
