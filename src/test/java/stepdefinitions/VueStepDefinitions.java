@@ -45,11 +45,13 @@ public class VueStepDefinitions {
     @When("I click on <checkbox> next to {string} item")
     public void i_click_on_checkbox_next_to_item(String string) {
         vuePage.firstItemCheckBox.click();
+        System.out.println(string);
     }
 
     @Then("I should see {string} item marked as DONE")
     public void i_should_see_item_marked_as_done(String string) {
         Assert.assertEquals("todo completed", vuePage.firstCompletedItem());
+        System.out.println(string);
     }
 
     @Given("ToDo list with marked item")
@@ -60,14 +62,16 @@ public class VueStepDefinitions {
     }
 
     @Then("I should see {string} item marked as UNDONE")
-    public void ıShouldSeeItemMarkedAsUNDONE(String arg0) {
+    public void IShouldSeeItemMarkedAsUNDONE(String arg0) {
         Assert.assertEquals("todo", vuePage.firstCompletedItem());
+        System.out.println(arg0);
     }
 
     @When("I click on <delete button> next to {string} item")
-    public void ıClickOnDeleteButtonNextToItem(String arg0) {
+    public void IClickOnDeleteButtonNextToItem(String arg0) {
         ReusableMethods.hover(vuePage.firstItem);
         vuePage.firstItemDeleteIcon.click();
+        System.out.println(arg0);
     }
 
     @Then("List should be empty")
@@ -84,7 +88,7 @@ public class VueStepDefinitions {
     }
 
     @Then("I shouldn't see {string} item insterted to ToDo list below {string} item")
-    public void ıShouldnTSeeItemInstertedToToDoListBelowItem(String firstElement, String secondElement) {
+    public void IShouldnTSeeItemInstertedToToDoListBelowItem(String firstElement, String secondElement) {
         int buySomeMilkIndex = vuePage.allToDoList().indexOf(secondElement);
         buySomeMilkIndex++;
         Assert.assertNotEquals(firstElement + " "+ secondElement+" den sonra geliyor" ,vuePage.allToDoList().get(buySomeMilkIndex),firstElement);
