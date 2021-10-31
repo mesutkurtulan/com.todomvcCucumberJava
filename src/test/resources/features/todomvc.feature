@@ -30,3 +30,9 @@ Feature: ToDo list
     Given ToDo list with "rest for a while" and "drink water" item in order
     When I click on <delete button> next to "rest for a while" item
     Then I should see "drink water" item in ToDo list
+
+  Scenario: Add the third item to the TODO list below the second item
+    Given ToDo list with "buy some milk" and "rest for a while" item in order
+    When I write "drink water" to <textbox> and press <enter>
+    Then I shouldn't see "drink water" item insterted to ToDo list below "buy some milk" item
+

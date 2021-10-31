@@ -4,7 +4,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
 import pages.VuePage;
 import utilities.ReusableMethods;
 
@@ -25,6 +24,7 @@ public class VueStepDefinitions {
     public void i_should_see_item_in_to_do_list(String ExpectedString) {
         String actualString = vuePage.firstItemONTheTODOlist();
         Assert.assertEquals(ExpectedString, actualString);
+
     }
 
     @Given("ToDo list with {string} item")
@@ -81,5 +81,12 @@ public class VueStepDefinitions {
         vuePage.goToEmptyToDoList();
         vuePage.addItemToTheTODOlist(item1);
         vuePage.addItemToTheTODOlist(item2);
+    }
+
+    @Then("I shouldn't see {string} item insterted to ToDo list below {string} item")
+    public void ıShouldnTSeeItemInstertedToToDoListBelowItem(String firstElement, String secondElement) {
+        int buySomeMilkIndex = vuePage.allToDoList().indexOf(secondElement);
+        buySomeMilkIndex++;
+        Assert.assertNotEquals(firstElement + " "+ secondElement+" den sonra geliyor" ,vuePage.allToDoList().get(buySomeMilkIndex),firstElement);
     }
 }

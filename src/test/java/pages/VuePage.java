@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VuePage {
@@ -29,6 +30,7 @@ public class VuePage {
     @FindBys({
             @FindBy(className = "todo")
     })
+
     public List<WebElement> todoList;
 
     public void goToEmptyToDoList(){
@@ -57,6 +59,20 @@ public class VuePage {
     public String markAllAsComplete(){
         String markAllAsComplete = Driver.getDriver().findElement(By.cssSelector(".main > label")).getText();
         return markAllAsComplete;
+    }
+
+    public List<String> allToDoList(){
+
+        List<WebElement> toDoListElement = Driver.getDriver().findElements(By.cssSelector(".todo")); // list'teki eleman sayısı
+
+        ArrayList<String> toDoList = new ArrayList<>();
+
+        for (int i = 1; i <=toDoListElement.size() ; i++) {
+            String todoElement = ".todo-list > li:nth-child("+i+")";
+            String eachElementText = Driver.getDriver().findElement(By.cssSelector(todoElement)).getText();
+            toDoList.add(eachElementText);
+        }
+        return toDoList;
     }
 
 }
